@@ -1,0 +1,23 @@
+<div class="fore baixo" style="height:25px;">
+  <table height="25">
+    <tr>
+      <td width="32" align="center">
+        <?= Html::getImage('workbench/export.png', array('style' => 'cursor:pointer;', 'onclick' => "Navigator.doExport();", 'title' => 'Exportar')); ?>
+      </td>
+      <td width="32" align="center">
+        <?= Html::getImage('workbench/import.png', array('style' => 'cursor:pointer;', 'onclick' => "Navigator.doImport();", 'title' => 'Importar')); ?>
+      </td>
+      <td width="32" align="center">
+        <?= Html::getImage('workbench/refresh.png', array('style' => 'cursor:pointer;', 'onclick' => "Navigator.doRefresh();", 'title' => 'Atualizar')); ?>
+      </td>
+    </tr>
+  </table>
+</div>
+<div id="div_navigator">
+  <?= Html::getItem('Connections', 'workbench/connections.png', "connections", "showConnections", "", "", "add"); ?>
+  <form method="post" name="frm" id="frm" action="<?= Request::getServletPath('executeQuery'); ?>">
+    <?= Html::hidden('conn_id', ''); ?>
+    <?= Html::hidden('query', ''); ?>
+    <?= Html::hidden('delimiter', ''); ?>
+  </form>
+</div>

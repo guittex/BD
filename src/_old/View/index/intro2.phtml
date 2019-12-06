@@ -1,0 +1,113 @@
+<?php
+
+global $lang, $theme;
+
+$error = $this->getAttribute('error', true);
+
+$this->display('header');
+
+?>
+<script type="text/javascript">
+
+function doEnter() {
+	document.frm.submit();
+}
+
+function resize() {
+
+	g("w").value = window.innerWidth;
+	g("h").value = window.innerHeight;
+
+	g("main").style.position = "absolute";
+	g("main").style.left     = ((g("w").value - 640) / 2) + "px";
+	g("main").style.top      = ((g("h").value - 385) / 2) + "px";
+}
+
+</script>
+<style type="text/css">
+
+body {
+	background: #FFE7F7;
+}
+
+#main {
+	border: 1px solid #000000;
+	background: #FFFFFF;
+}
+
+#copyright {
+	text-align: center;
+	height: 20px;
+}
+
+</style>
+<div id="main" class="panel">
+  <form name="frm" method="post" action="<?php echo $this->getServletPath('intro'); ?>">
+  <input type="hidden" name="w" id="w" />
+  <input type="hidden" name="h" id="h" />
+  <input type="hidden" name="browser" id="browser" />
+  <div id="title" class="title"><?php echo $lang->translate(1); ?></div>
+  <hr />
+  <div style="float:left; width:312px; padding-left:4px;">
+	<div id="div_pagina" style="display:none;">
+	  <div>
+		<div style="height:148px;"></div>
+		<hr />
+	  </div>
+	  <div style="height:18px;" class="destaque"><?= $error; ?></div>
+	  <div><?php echo Util::getTextBox('text', 'username', '', $lang->translate(65) . ':', 'width:95%;'); ?></div>
+	  <div><?php echo Util::getTextBox('password', 'password', '', $lang->translate(84) . ':', 'width:95%;'); ?></div>
+	  <div style="padding-top:4px;">
+		<?php echo Util::getButton('button', 'btn_enter', $lang->translate(67), "doEnter();", '80px'); ?>
+	  </div>
+	</div>
+	<noscript>
+	  <p class="destaque"><?php echo $lang->translate(14); ?></p>
+	</noscript>
+  </div>
+  <div style="float:left; width:312px; padding-left:4px;">
+	<div style="float:left; padding-right:4px;">
+	  <?php echo $theme->getImage('logo.mysql.png', array('class' => 'panel', 'style' => 'border:1px solid #808080; width:150px; height:150px;')); ?>
+	</div>
+	<div>
+	  <?php echo $theme->getImage('logo.oracle.png', array('class' => 'panel', 'style' => 'border:1px solid #808080; width:150px; height:150px;')); ?>
+	</div>
+	<div style="float:left; padding-right:4px;">
+	  <?php echo $theme->getImage('logo.postgre.png', array('class' => 'panel', 'style' => 'border:1px solid #808080; width:150px; height:150px;')); ?>
+	</div>
+	<div>
+	  <?php echo $theme->getImage('logo.sql_server.png', array('class' => 'panel', 'style' => 'border:1px solid #808080; width:150px; height:150px;')); ?>
+	</div>
+  </div>
+  <br clear="all" />
+  <hr />
+  <div id="copyright"><?php printf($lang->translate(48), date('Y')); ?></div>
+  </form>
+</div>
+<script type="text/javascript">
+
+	show("div_pagina");
+
+	g("browser").value = util.getBrowser();
+
+	window.onresize = function () {
+		resize();
+	};
+
+	resize();
+
+	if (!util.accessValid()) {
+		g("div_pagina").className = "destaque";
+		g("div_pagina").innerHTML = "<?= $lang->translate(15); ?>";
+	}
+	else {
+
+		if (util.o("username")) {
+			util.o("username").focus();
+		}
+		
+	}
+
+</script>
+</body>
+</html>

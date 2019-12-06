@@ -1,0 +1,16 @@
+<?php global $lang; ?>
+<noscript>
+	<?php echo $lang->translate(14); ?>
+</noscript>
+<script type="text/javascript">
+
+	if (util.accessValid()) {
+		show("div_pagina");
+	}
+	else {
+		alert("<?php echo $lang->translate(15); ?>");
+	}
+
+</script>
+</body>
+</html>

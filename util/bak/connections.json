@@ -1,0 +1,14 @@
+[
+    {"enabled" : true, "table_sequence" : null,      "adapter" : "mysql", "id" : 1, "label" : "mysql (localhost - no schema)", "host" : "127.0.0.1",      "port" : "3306", "user" : "root",      "pass" : "",          "schema" : ""},
+    {"enabled" : false, "table_sequence" : "wfl_seq", "adapter" : "mysql", "id" : 2, "label" : "intrajur2 (cloud)",    "host" : "138.128.188.82", "port" : "3306", "user" : "slink_jur", "pass" : "45@H@C8w6", "schema" : "slink_intra"},
+	{"enabled" : true, "table_sequence" : "wfl_seq", "adapter" : "mysql", "id" : 3, "label" : "workflow (localhost)", "host" : "127.0.0.1",      "port" : "3306", "user" : "root",      "pass" : "",          "schema" : "workflow"},
+	{"enabled" : true, "table_sequence" : null,      "adapter" : "mysql", "id" : 4, "label" : "asteriskcdrdb-local",  "host" : "127.0.0.1",      "port" : "3306", "user" : "root",      "pass" : "",          "schema" : "asteriskcdrdb"},
+	{"enabled" : true, "table_sequence" : "wfl_seq", "adapter" : "mysql", "id" : 5, "label" : "intrajur2 (AWS) PROD", "host" : "asprev.ckbqvh6eiacv.sa-east-1.rds.amazonaws.com", "port" : "3306", "user" : "asprev", "pass" : "asprev2019", "schema" : "asprev"},
+	{"enabled" : true, "table_sequence" : "wfl_seq", "adapter" : "mysql", "id" : 6, "label" : "intrajur2 (AWS) DEV", "host" : "asprev.ckbqvh6eiacv.sa-east-1.rds.amazonaws.com", "port" : "3306", "user" : "asprev", "pass" : "asprev2019", "schema" : "asprev_dev"},
+	{"enabled" : true, "table_sequence" : "wfl_seq", "adapter" : "mysql", "id" : 7, "label" : "intrajur2 (AWS) ADM_DEV", "host" : "asprev.ckbqvh6eiacv.sa-east-1.rds.amazonaws.com", "port" : "3306", "user" : "asprev", "pass" : "asprev2019", "schema" : "asprev_adm_dev"},
+	{"enabled" : true, "table_sequence" : null,      "adapter" : "postgres", "id" : 8, "label" : "logs intrajur2", "host" : "logs.ckbqvh6eiacv.sa-east-1.rds.amazonaws.com", "port" : "5432", "user" : "asprev", "pass" : "asprev2019", "schema" : "logs"}
+]
+[
+	{"id" : 1, "adapter" : "mysql",    "user" : "asprev", "pass" : "asprev2019", "schema" : "asprev_dev", "label" : "", "host" : "10.0.3.20", "port" : "3306", "enabled" : true, "table_sequence" : "wfl_seq"},
+	{"id" : 2, "adapter" : "postgres", "user" : "asprev", "pass" : "asprev2019", "schema" : "logs",       "label" : "", "host" : "10.0.1.78", "port" : "5432", "enabled" : true, "table_sequence" : null}
+]

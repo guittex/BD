@@ -1,0 +1,6 @@
+[
+	{"adapter" : "mysql",    "enabled" : false, "id" : 1, "label" : "MySQL (information_schema)", "host" : "localhost",                  "port" : "3306", "user" : "root",     "pass" : "", "schema" : "information_schema"},
+	{"adapter" : "oracle",   "enabled" : false, "id" : 2, "label" : "Oracle (XE)",                "host" : "hend",                       "port" : "1521", "user" : "system",   "pass" : "", "dedicated" : true, "service_name" : "XE64"},
+	{"adapter" : "postgres", "enabled" : false, "id" : 3, "label" : "PostgreSQL (postgres)",      "host" : "localhost",                  "port" : "5432", "user" : "postgres", "pass" : ""},
+	{"adapter" : "mssql",    "enabled" : true,  "id" : 4, "label" : "MS SQLServer (agv api)",     "host" : "srv-spvinsqlhom.agv.com.br", "port" : "1433", "user" : "Devuser",  "pass" : "D3vU$er@gv", "schema" : "api"}
+]

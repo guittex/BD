@@ -1,0 +1,13 @@
+<?php
+
+global $theme, $lang;
+
+$nav_height  = $this->getAttribute('navigator.height');
+
+echo '<div class="branco" style="padding-top:6px;">';
+printf('<div style="overflow:auto; width:%s; height:%spx;">', '100%', ($nav_height + 2));
+echo $this->getItem($lang->translate(16), 'connections.png', "connections", "get_connections", "", "", false, false, false, false, false, false);
+echo '</div>';
+echo '</div>';
+
+?>

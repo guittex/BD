@@ -1,0 +1,17 @@
+<?php
+
+global $workspaces, $panel_width, $panel_height;
+
+?>
+<!-- START WORKSPACE -->
+      
+<div style="float:left; width:<?= $panel_width; ?>px;" class="panel todas teste">
+  <div id="div_workspace" style="height:<?= $panel_height; ?>px;">
+	<?php echo implode("\n", $workspaces); ?>
+  </div>
+  <div class="" style="height:30px;">
+	<iframe name="ifrm_form" id="ifrm_form" style="border:none; width:1px; height:1px;"></iframe>
+  </div>
+</div>
+
+<!-- END WORKSPACE -->

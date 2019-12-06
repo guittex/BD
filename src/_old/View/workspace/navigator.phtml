@@ -1,0 +1,30 @@
+<?php
+
+global $nav_width, $nav_height, $server_script;
+
+?>
+<!-- START NAVIGATOR -->
+      
+<div style="float:left; width:<?= $nav_width; ?>px;" class="panel todas teste">
+  <div id="div_servers"></div>
+  <script type="text/javascript">
+
+	var $dbservers = [];
+
+	<?php echo implode("\n", $server_script); ?>
+
+	new TabNavigator($dbservers, "servers", 0, "33px", "<?= $nav_height; ?>px", "doShowWorkSpace(server.$servers[this.selectedIndex()].name);");
+	getTabNavigator("servers").render();
+
+  </script>
+  <div class="cima" style="height:30px;">
+	  <form name="frm" id="frm" method="post">
+	  <input type="hidden" name="conn_id" id="conn_id" />
+	  <input type="hidden" name="sql" id="sql" />
+	  <input type="hidden" name="pag" id="pag" value="1" />
+	  <div id="div_hiddens"></div>
+	</form>
+  </div>
+</div>
+      
+<!-- END NAVIGATOR -->

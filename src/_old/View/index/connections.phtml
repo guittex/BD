@@ -1,0 +1,27 @@
+<?php
+
+global $theme, $lang;
+
+$nav_height  = $this->getAttribute('navigator.height');
+//$tab_index   = $this->getParameter('tab_index');
+$connections = $this->server->rules->connections;
+/*
+echo '<div class="baixo" style="height:21px; padding-top:5px; padding-left:8px;">';
+echo $theme->getImage('refresh.png', array("onclick" => "getTabNavigator('servers').options('{$tab_index}').refresh();"));
+echo '</div>';
+*/
+if (is_array($connections)) {
+	
+	foreach ($connections as $conn_id => $linha) {
+				
+		$edit   = false;
+		$delete = false;
+//		$edit   = ($this->server->rules->dbIsDefault($linha->getDB()) == false);
+//		$delete = ($this->server->rules->dbIsDefault($linha->getDB()) == false);
+				
+		echo $this->getItem($linha->label, 'databases.png', "attributes_{$conn_id}", "get_attributes", "conn_id={$conn_id}", "doOpenWorkSpace('{$this->server->name}', '{$conn_id}');", false, $edit, $delete, false, false, false);
+	}
+	
+}
+
+?>

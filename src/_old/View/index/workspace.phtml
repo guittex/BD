@@ -1,0 +1,30 @@
+<?php
+
+global $lang, $theme;
+
+$conn_id       = $this->getParameter('conn_id');
+$server        = $this->server;
+$panel_width   = $this->getAttribute('panel.width');
+$panel_height  = $this->getAttribute('panel.height');
+$iframe_height = $this->getAttribute('iframe.height');
+
+?>
+<div id="<?php printf('%s_workspace', $server->name); ?>">
+  <div class="commands">
+	<div style="height:23px; padding-top:2px; padding-left:2px; width:235px; float:left; background:url(<?php echo $theme->getImagePath('commands.png'); ?>);">
+	  <div style="float:left;" class="icone" title="<?php echo $lang->translate(66), ' (F9)'; ?>" onmouseover="this.className = 'icone_over';" onmouseout="this.className = 'icone';" onclick="doExecute('<?php echo $server->name; ?>');">&nbsp;</div>
+	  <div style="float:left; width:188px;">&nbsp;</div>
+	  <div style="float:left;" class="icone" title="<?php echo $lang->translate(106); ?>" onmouseover="this.className = 'icone_over';" onmouseout="this.className = 'icone';" onclick="doClean('<?php echo $server->name; ?>');">&nbsp;</div>
+	</div>
+	<div style="height:26px;">
+	  <input type="hidden" id="<?php echo "{$server->name}_conn"; ?>" value="<?= $conn_id; ?>" />
+	</div>
+  </div>
+  <div class="fore cima" style="height:16px; padding-top:2px;">
+	<?php printf('&nbsp;%s:', $lang->translate(11)); ?>
+  </div>
+  <div class="fore">
+	<textarea name="<?php printf('%s_statement', $server->name); ?>" id="<?php printf('%s_statement', $server->name); ?>" onkeyup="var tecla = event.which; posta('<?php echo $server->name; ?>', tecla);" wrap="hard" style="width:<?= $panel_width; ?>px; height:160px;" class="campo3" onfocus="this.className = 'campo_focus';" onblur="this.className = 'campo3';"></textarea>
+  </div>
+  <div id="<?php echo "div_output_{$server->name}"; ?>"></div>
+</div>

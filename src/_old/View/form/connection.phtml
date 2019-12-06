@@ -1,0 +1,43 @@
+<?php
+
+global $theme, $lang;
+
+$conn_id    = $this->getParameter('conn_id');
+$server     = getCurrServer();
+$connection = getConnection($conn_id);
+$params     = '';
+
+printr(array($server, $connection));
+
+/*
+if (isset($connection->label)) {
+	$title   = sprintf('%s - %s', $lang->translate(55), $connection->label);
+	$params .= Util::getHiddenBox('conn_id', $conn_id);
+}
+else {
+	$title   = sprintf('%s %s', $lang->translate(87), $lang->translate(55));
+	$params .= Util::getHiddenBox('conn_id', -1);
+}
+
+/*
+$params .= Util::getHiddenBox('server_name', $server_name);
+$ret = array();
+
+/*
+$ret[] = sprintf('<form method="post" action="" target="ifrm_form">');
+$ret[] = '<fieldset>';
+$ret[] = sprintf('<legend class="title">%s</legend>', '');
+$ret[] = '<table style="width:100%;"><tr><td valign="top">';
+//$ret[] = $server->rules->getFormFields($connection, $hostname);
+$ret[] = '<p>' . Util::getButton('submit', 'env_form', 'Save') . '</p>';
+//$ret[] = $params;
+$ret[] = '</td>';
+$ret[] = '<td align="center" style="width:50%; border-left:1px solid #808080;">';
+$ret[] = $theme->getImage(sprintf('logo.%s.png', ''), array('style' => 'width:200px; height:200px; border:1px solid #808080;', 'class' => 'panel'));
+$ret[] = '</td></tr></table>';
+$ret[] = '</fieldset>';
+$ret[] = '</form>';
+
+echo implode("\n", $ret);
+*/
+?>

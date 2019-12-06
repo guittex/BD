@@ -1,0 +1,63 @@
+<?php
+
+$connections = Request::getAdapters();
+$db          = Request::getAdapter();
+$cid         = $db->getConnection()->getId();
+$iframe_id   = "iframe[{$cid}]";
+$sql_field   = "form[{$cid}][query]";
+
+?>
+<table style="width:100%;" cellpadding="0" cellspacing="0">
+  <tr>
+    <td colspan="3" class="title baixo" height="25">&nbsp;<?= $db->getInfo(); ?></td>
+  </tr>
+  <tr>
+    <td colspan="3">
+      <table style="width:100%;">
+        <tr>
+          <td class="baixo">
+            <div style="position:relative; width:100%; height:25px;">
+              <div style="position:absolute; width:100%; height:25px;"><?= Html::getImage('workbench/commands.png'); ?></div>
+              <div style="position:absolute; width:100%; height:25px;">
+                <table cellpadding="0" cellspacing="0" width="500">
+                  <tr>
+					<td class="JIco"><div class="JIco" onclick="<?= "document.getElementById('$sql_field').focus(); Workspace.executeQuery({$cid});"; ?>" title="Execute selected statement (F9)">&nbsp;</div></td>
+        	        <td class="JIco"><div class="JIco" onclick="<?= "Workspace.executeScript({$cid});"; ?>" title="Execute All statements (Shift + F9 or F8)">&nbsp;</div></td>
+            	    <td width="126">&nbsp;</td>
+            	    <td class="JIco"><div class="JIco" onclick="<?= "Workspace.addPagedSQL({$cid});"; ?>" title="add paged sql template to statement (F2)">&nbsp;</div></td>
+            	    <td width="11"></td>
+            	    <td class="JIco"><div class="JIco" onclick="<?= "document.getElementById('{$iframe_id}').src = '';"; ?>" title="Clear output">&nbsp;</div></td>
+                  	<td></td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </td>
+          <td class="baixo" align="right">
+            <?= Html::getComboBox($connections->toArray(), "form[{$cid}][conn_id]", $cid, '', '', "Workspace.open(this.value);", false, 'id', 'label'); ?>
+          </td>
+        </tr>
+      </table>
+  </tr>
+  <tr>
+    <td colspan="3">
+      <?= Html::getTextArea($sql_field, '', 'SQL Statement:', '100%', 200, false, " onkeyup=\"Workspace.execute({$cid}, event);\" "); ?>
+      <div id="<?= "div_content_assist[$cid]"; ?>" class="content_assist" style="display:none;"></div>
+    </td>
+  </tr>
+  <tr>
+    <td height="35" valign="bottom">
+	  <table cellpadding="0" cellspacing="0">
+		<tr>
+		  <td><?= Html::getImage('linux/ui.linux.JTabNavigator.left.png'); ?></td>
+		  <td style="<?= Html::getBackground('linux/ui.linux.JTabNavigator.middle.png'); ?>">Results</td>
+		  <td><?= Html::getImage('linux/ui.linux.JTabNavigator.right.png'); ?></td>
+		</tr>
+	  </table>
+    </td>
+    <td width="75">delimiter:</td>
+    <td width="80"><?= Html::getTextField('text', "form[{$cid}][delimiter]", ';', '', 70); ?></td>
+  </tr>
+</table>
+<iframe class="cima esquerda" name="<?= $iframe_id; ?>" id="<?= $iframe_id; ?>" style="border-right:1px solid white; border-bottom:1px solid white; background:#FFFFFF; width:100%;"></iframe>
+<script>Workspace.resizeIframes();</script>

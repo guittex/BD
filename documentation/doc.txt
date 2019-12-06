@@ -1,0 +1,55 @@
+
+/*
+
+create 
+	view v_teste (cd, ds) 
+	as select * from carta
+
+*/	
+
+
+
+function addTag(tag) {
+
+	var textrange = document.selection.createRange();
+	var string = textrange.text;
+        
+	document.form1.field1.focus();
+        
+	textrange.text = "<" + tag + ">" + string + "</" + tag + ">";
+}
+
+function getSQL($sql, $pagina = 1) {
+
+	$pagina  = $pagina > 0 ? $pagina : 1;
+	$num_pag = getNumPag();
+	$ate    = $num_pag * $pagina + 1;
+	$de     = $ate - $num_pag;
+
+	$sql_pg = "
+		SELECT * FROM (
+			SELECT ROW_NUMBER() OVER (ORDER BY nome ASC) AS row_id_new, A.* FROM ({$sql}) A
+		)
+		WHERE row_id_new BETWEEN {$de} AND {$ate};
+	";
+
+	return $sql_pg;
+}
+
+function getTotal($sql) {
+	return intval(fetch_col("SELECT count(*) AS quantos FROM {$sql}", "quantos"));
+}
+
+function getTotalPaginas($total) {
+	return ceil($total / getNumPag());
+}
+
+function getNumPag() {
+	return 10;
+}
+
+$sql = "select * from tabela";
+$total = getTotal($sql);
+$total_paginas = getTotalPaginas($total);
+
+$sql = getSQL($sql, @$_REQUEST['pagina']);

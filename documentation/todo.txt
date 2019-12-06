@@ -1,0 +1,13 @@
+// TODO: seleciona o BD no login e remove abas do server (import e export seleciona servers)
+// TODO: trocar aba 'Servers' para MySQL e Oracle, reimplementar, ao selecionar a aba do BD, traz connections filtradas (sem separar host, mostrar o host em algum lugar da tela)
+// TODO: criar framework javascript com datagrid + paginacao e ajax e TabNavigator
+// TODO: ao abrir workspace, atualizar somente o combo das connections com AJAX
+// TODO: textarea colorido com linhas (mysql, oracle, postgre e SQLServer [CodeMirror])
+// TODO: ações (list, structure, add, edit, del, create connection)
+// TODO: content assist (listar de outros schemas tambem) (CodeMirror)
+// TODO: atributos adicionais do oracle, postgre & SQLServer (triggers)
+// TODO: implementar para Postgre e SQL Server
+// TODO: transferência autom�tica de um servidor para o outro. (heheheeheheheh)
+// TODO: dump (seleciona a conex�o e tabelas e gera um arquivo script)
+// TODO: exportação do grid (insert, coluna selecionada para comando in)
+// CANCELADO: (php-cgi.exe fecha as conex�es no final do script) Oracle / Postgre / SQLServer transaction control (connection na sess�o [commit and rollback {conn persistente}]) php apache module

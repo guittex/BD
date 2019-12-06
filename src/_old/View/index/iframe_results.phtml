@@ -1,0 +1,10 @@
+<?php
+
+$panel_width   = $this->getAttribute('panel.width');
+$iframe_height = $this->getAttribute('iframe.height');
+$ifrm = $this->server->name . "_ifrm_results";
+
+//echo '<div class="branco baixo" style="height:25px;">&nbsp;</div>';
+echo sprintf('<iframe name="%s" id="%s" class="baixo fore" style="width:%spx; height:%spx; border-top:none; border-left:none; border-right:none;"></iframe>', $ifrm, $ifrm, $panel_width, $iframe_height);
+
+?>

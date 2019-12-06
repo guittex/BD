@@ -1,0 +1,7 @@
+[
+	{"id" : 1, "adapter" : "mysql",    "user" : "asprev", "pass" : "asprev2019", "schema" : "asprev",     "label" : "asprev (AWS)",        "host" : "asprev.ckbqvh6eiacv.sa-east-1.rds.amazonaws.com", "port" : "3306", "enabled" : true, "table_sequence" : "wfl_seq"},
+	{"id" : 2, "adapter" : "mysql",    "user" : "asprev", "pass" : "asprev2019", "schema" : "asprev_dev", "label" : "asprev_dev (AWS)",    "host" : "asprev.ckbqvh6eiacv.sa-east-1.rds.amazonaws.com", "port" : "3306", "enabled" : true, "table_sequence" : "wfl_seq"},
+	{"id" : 3, "adapter" : "postgres", "user" : "asprev", "pass" : "asprev2019", "schema" : "logs",       "label" : "logs (AWS [pg])",     "host" : "logs.ckbqvh6eiacv.sa-east-1.rds.amazonaws.com",   "port" : "5432", "enabled" : true, "table_sequence" : null},
+	{"id" : 4, "adapter" : "mysql",    "user" : "asprev", "pass" : "asprev2019", "schema" : "asprev_dev", "label" : "asprev_dev (fesizw)", "host" : "10.0.3.20", "port" : "3306", "enabled" : false, "table_sequence" : "wfl_seq"},
+	{"id" : 5, "adapter" : "postgres", "user" : "asprev", "pass" : "asprev2019", "schema" : "logs",       "label" : "pg logs (dizego)",    "host" : "10.0.1.78", "port" : "5432", "enabled" : false, "table_sequence" : null}
+]

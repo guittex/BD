@@ -1,0 +1,116 @@
+<?php
+
+global $lang, $theme, $navigator;
+global $panel_width, $panel_height, $workspaces;
+global $nav_width, $nav_height, $server_script;
+
+$servers = $this->getAttribute('servers');
+
+$screen_width  = $this->getAttribute('screen.width');
+$screen_height = $this->getAttribute('screen.height');
+$browser       = $this->getAttribute('browser');
+
+$s_user = $this->getAttribute('user');
+
+$nav_width   = 300;
+$nav_height  = $screen_height - 22 - 19 - 1 - 26 - 6 - 25 - 26 - 26 - 6 - 26 - 7 - 1 + 8 + 27;
+$panel_width = $screen_width - 6 - $nav_width - 6 - 6 - 4;
+
+if ($browser == 'firefox') {
+	$nav_height -= 1;
+}
+
+$panel_height  = $nav_height + 43;
+$iframe_height = $panel_height - 282 - 25 + 25 + 8;
+
+$this->setAttribute('navigator.height', $nav_height);
+$this->setAttribute('panel.width', $panel_width);
+$this->setAttribute('panel.height', $panel_height);
+$this->setAttribute('iframe.height', $iframe_height);
+
+$this->display('header');
+
+$server_script = array();
+$workspaces    = array();
+
+if (is_array($servers)) {
+
+	foreach ($servers as $i => $server) {
+		$server_script[] = sprintf('$dbservers[$dbservers.length] = {$label: "%s", $action: "%s.load_navigator"};', $server->label, $server->name, $i);
+		$workspaces[]    = sprintf('<div id="div_workspace[%s]" style="display:none;"></div>', $server->name);
+	}
+
+}
+
+?>
+<script type="text/javascript">
+
+var PANEL_WIDTH   = "<?= $panel_width; ?>";
+var PANEL_HEIGHT  = "<?= $panel_height; ?>";
+var IFRAME_HEIGHT = "<?= $iframe_height; ?>";
+lang.$language = "<?php echo $lang->lang; ?>";
+
+function logout() {
+	location = "<?php echo $this->getServletPath('logout'); ?>";
+}
+
+</script>
+  <div id="div_pagina" style="<?php echo "display:none; width:{$screen_width}px;"; ?>">
+    <div style="padding-top:4px; height:18px; background-image:url(<?php echo $theme->getImagePath('title_bg.png'); ?>); float:left;" id="Title">
+      <script type="text/javascript">setTitle("<?php printf('%s - %s@%s', $lang->translate(1), $s_user->username, $_SERVER['SERVER_NAME']); ?>");</script>
+    </div>
+    <div style="padding-top:1px; height:21px; background-image:url(<?php echo $theme->getImagePath('title_bg.png'); ?>); text-align:right;">
+<!--<img src="<?php echo $theme->getImagePath('close.png'); ?>" style="cursor:pointer;" onclick="logout();" />-->
+    </div>
+    <div class="fore" style="background-image:url(<?php echo $theme->getImagePath('menu_file_bg.png'); ?>); height:19px;">
+	<?php
+			  	
+		foreach (range(2, 10) as $a) {
+			echo Util::getMenuFileItem("menufile_{$a}", $lang->translate($a));
+		}
+
+		echo Util::getMenuFileItem("menufile_11", $lang->translate(103), "logout();");
+		
+	?>
+    </div>
+    <div class="fore" style="height:1px;"></div>
+    <div class="fore baixo" style="width:300px; height:26px; padding-left:2px; float:left; background-image:url(<?php echo $theme->getImagePath('menu_file2.png'); ?>);">
+	  <div style="" class="icone" title="" onmouseover="this.className = 'icone_over';" onmouseout="this.className = 'icone';" onclick="doNewConnection(server.getById(getTabNavigator('servers').selectedIndex()).name);">&nbsp;</div>
+    </div>
+    <div class="fore baixo" style="height:21px; padding-top:5px; padding-right:4px; text-align:right;" id="div_clock"></div>
+    <div class="back" style="height:6px;"></div>
+    
+    <!-- START PANELS -->
+    
+    <div class="back" style="width:100%;">
+      <div style="float:left; width:6px;">&nbsp;</div>
+      
+      <?php
+
+      	$meio = '<div style="float:left; width:6px;">&nbsp;</div>';
+      
+      	if ($navigator == 'right') {
+			$this->display('workspace/panel');
+			echo $meio;
+			$this->display('workspace/navigator');
+		}
+		else {
+			$this->display('workspace/navigator');
+			echo $meio;
+			$this->display('workspace/panel');
+		}
+      
+      ?>
+      
+      <br clear="all" />
+    </div>
+
+    <!-- END PANELS -->
+
+    <div class="back" style="height:6px;"></div>
+  </div>
+<script type="text/javascript">
+	clock(1);
+	clock();
+</script>  
+<?php $this->display('footer'); ?>

@@ -1,0 +1,43 @@
+<div id="div_pagina_aux" style="opacity: 0.60; filter: alpha(opacity = 60); display:none; width: 100%; height: 100%; position: absolute; background: #000000;"></div>
+<div id="div_popup" style="display:none; position: absolute;">
+<table id="panel" width="100%" height="100%" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="57">
+      <table width="100%" cellpadding="0" cellspacing="0">
+		<tr>
+		  <td width="65"><?= Html::getImage('mac/mac.panel.top.left.png'); ?></td>
+		  <td style="background:url(<?= Html::getImagePath('mac/mac.panel.top.middle.png'); ?>);">
+		    <table width="99%" align="center" cellpadding="0" cellspacing="0">
+		      <tr>
+		        <td height="24" align="center">&nbsp;</td>
+		      </tr>
+		      <tr>
+		        <td height="33" align="center" id="div_popup_title"></td>
+		      </tr>
+		    </table>
+		  </td>
+		  <td width="30">
+		    <?= Html::getImage('mac/mac.panel.top.right.png', array('style' => 'cursor:pointer;', 'onclick' => "Popup.hide();")); ?>
+		  </td>
+		</tr>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td height="100%" style="background:rgb(232, 232, 232);" valign="top" id="div_popup_body"></td>
+  </tr>
+  <tr>
+    <td height="20">
+	  <table width="100%" cellpadding="0" cellspacing="0">
+		<tr>
+		  <td width="25"><?= Html::getImage('mac/mac.panel.bottom.left.png'); ?></td>
+		  <td style="background:url(<?= Html::getImagePath('mac/mac.panel.bottom.middle.png'); ?>);">
+		    <div id="div_popup_footer" align="center"></div>
+		  </td>
+		  <td width="16"><?= Html::getImage('mac/mac.panel.bottom.right.png'); ?></td>
+		</tr>
+      </table>
+    </td>
+  </tr>
+</table>
+</div>

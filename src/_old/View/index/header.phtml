@@ -1,0 +1,164 @@
+<?php
+
+global $lang, $theme;
+
+$all_languages = $lang->getAll();
+$servers       = $this->getAttribute('servers');
+
+?>
+<html>
+<head>
+<title><?= APP_TITLE; ?></title>
+<script type="text/javascript">
+
+var $GLOBALS  = new Object();
+var ROOT_PATH = "<?php echo ROOT_PATH; ?>";
+
+</script>
+<?php foreach (array('flex', 'ajax', 'alert', 'button', 'checkbox', 'combobox', 'datagrid', 'funcoes', 'jquery-1.8.0', 'php', 'radiobox', 'tabnavigator', 'textbox', 'util') as $f) { ?>
+<script type="text/javascript" src="<?php printf('%s/javascript/%s.js', ROOT_PATH, $f); ?>"></script>
+<?php } ?>
+<script type="text/javascript">
+
+flex.image_src = "<?= $theme->getImagePath(); ?>";
+
+function Language($lang) {
+	
+	this.$text     = new Object();
+	this.$language = $lang ? $lang : "<?php echo $lang->getDefaultLanguage(); ?>";
+	
+	<?php
+	
+		$messages = array();
+	
+		foreach ($all_languages as $key => $v) {
+			
+			$messages[] = sprintf('this.$text["%s"] = Array();', $key);
+			
+			foreach ($v as $x => $label) {
+				$messages[] = sprintf('this.$text["%s"][%s] = "%s";', $key, $x, $label);
+			}
+			
+			$messages[] = '';
+		}
+
+		echo implode("\n\t", $messages);
+	
+	?>
+
+	this.translate = function (key) {
+		var key = (key == undefined ? 43 : key);				
+		return this.$text[this.$language][key];
+	};
+	
+}
+
+function Server() {
+
+	this.$servers = new Array();
+
+	<?php
+	
+		$arr_srv = array();
+
+		if (is_array($servers)) {
+
+			foreach ($servers as $i => $server) {
+				
+				$arr_srv[] = sprintf('this.$servers[%s] = {name:"%s", label:"%s"};', $i, $server->name, $server->label);
+				$arr_srv[] = sprintf('this.$servers[%s].connections = [];', $i);
+				
+				if (is_array($server->rules->connections)) {
+				
+					foreach ($server->rules->connections as $j=> $entity) {
+						$arr_srv[] = sprintf('this.$servers[%s].connections[%s] = {label:"%s", info:"%s"};', $i, $entity->id, $entity->label, $entity->getInfo());
+					}
+						
+				}
+
+				$arr_srv[] = '';				
+			}
+		
+		}
+
+		echo implode("\n\t", $arr_srv);
+
+	?>
+
+
+	this.getById = function (db_index) {
+
+		if (this.$servers[db_index] != undefined) {
+			return this.$servers[db_index];
+		}
+
+		return false;
+	};
+	
+	this.getByName = function (db_name) {
+		
+		var index = -1;
+		
+		for (var i in this.$servers) {
+			
+			if (db_name.toLowerCase() == this.$servers[i].name.toLowerCase()) {
+				index = i;
+				break;
+			}
+			
+		}
+		
+		return this.getById(index);
+	};
+	
+	this.getAll = function () {
+		return this.$servers;
+	};
+
+}
+
+function clock() {
+
+	setInterval(function () {
+
+		if (util.o("div_clock")) {
+			util.o("div_clock").innerHTML = php.date(lang.translate(90));
+		}
+		
+	}, 1000);
+	
+}
+
+var lang   = new Language("<?php echo $lang->lang; ?>");
+var server = new Server();
+var semana = [];
+var meses  = [];
+
+for (var i = 32; i <= 38; i++) {
+	semana[semana.length] = lang.translate(i);
+}
+
+for (var i = 91; i <= 102; i++) {
+	meses[meses.length] = lang.translate(i);
+}
+
+php.weekday = semana;
+php.months  = meses;
+
+</script>
+<style type="text/css" media="screen">
+<?php $theme->doLoadCSS('estilos'); ?>
+</style>
+</head>
+<body>
+<div id="div_pagina_aux" style="opacity: 0.60; filter: alpha(opacity = 60); display: none; width: 100%; height: 100%; position: absolute; background: #666666;"></div>
+<div id="div_alert" style="display:none; position:absolute;"></div>
+<div id="div_popup" style="display:none; position:absolute; background-color:#FFFFFF; border-left:1px solid #666666; border-right:1px solid #666666; border-bottom:1px solid #666666;" class="panel">
+  <div style="height:22px; background-image:url(<?php echo $theme->getImagePath('title_bg.png'); ?>);">
+	<div style="float:left; padding-left:5px; padding-top:3px;" id="popup_title"></div>
+	<div style="float:right; padding-top:1px; padding-right:1px;" align="right">
+	  <?php echo $theme->getImage('close.png', array('style' => 'cursor:pointer;', 'onclick' => "doClosePopup();")); ?>
+	</div>
+  </div>
+  <div id="div_popup2" style="overflow:auto; padding-left:3px;"></div>
+</div>

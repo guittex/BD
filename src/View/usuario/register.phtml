@@ -1,0 +1,96 @@
+<?php
+
+/** @var UsuarioController $this */
+
+$auth_user  = $this->getAttribute('auth_user');
+$auth_pass  = $this->getAttribute('auth_pass');
+$message    = $this->getAttribute('message', true);
+
+if ($auth_user && $auth_pass) {
+    $campo = 'confirm';
+}
+else {
+    $campo = $auth_user ? 'password' : 'username';
+}
+
+$type = $campo == 'username' ? 'text' : 'password';
+
+?>
+<html>
+<head>
+<title><?= APP_TITLE; ?></title>
+<style type="text/css">
+<?php Html::doLoadCSS('styles', 'logon'); ?>
+</style>
+<?php Html::doLoadJS(); ?>
+<script type="text/javascript">
+
+function doResize() {
+	Util.$$("div_logon").center(632, 479);
+}
+
+</script>
+</head>
+<body>
+<img style="position:absolute; width:100%; height:100%;" src="<?= getPath(IMAGE_PATH, 'linux_fedora8_bg.png'); ?>" />
+<div style="position:absolute;" id="div_logon">
+  <form id="frm" method="post" action="<?= $this->getServletPath('register'); ?>">
+  <?php
+  
+  if ($campo == 'confirm') {
+      echo Html::hidden('username', $auth_user);
+      echo Html::hidden('password', $auth_pass);
+  }
+  elseif ($campo == 'password') {
+      echo Html::hidden('username', $auth_user);
+  }
+  
+  ?>
+  <table width="100%">
+    <tr>
+      <td width="279" class="white_title"><?php echo 'Register ', $auth_user; ?></td>
+      <td width="14" rowspan="3">&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>
+        <div align="right" class="blue_text">
+          <?= getInfo(); ?>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">
+        <div style="padding-left:6px; padding-right:6px;">&nbsp;</div>
+      </td>
+      <td valign="top">
+        <div style="padding-left:6px; padding-right:6px;">
+          <?= Html::spacer(12); ?>
+          <?= Html::getTextField($type, $campo, '', null, '100%', 20, false, "if (Util.isEnter(event)) {this.form.submit();}"); ?>
+          <?= Html::spacer(28); ?>
+          <div class="blue_text" align="center"><?= $message; ?>&nbsp;</div>
+          <?= Html::spacer(88); ?>
+          <div class="hover" align="center" onclick="alert('Em desenvolvimento!');">&nbsp;</div>
+          <?= Html::spacer(6); ?>
+          <div class="hover" align="center" onclick="alert('Em desenvolvimento!');">&nbsp;</div>
+          <?= Html::spacer(13); ?>
+          <div class="hover" align="center" onclick="location = '<?= $this->getServletPath('register'); ?>';">&nbsp;</div>
+        </div>
+      </td>
+    </tr>
+  </table>
+  </form>
+</div>
+<script>
+
+window.onresize = function () {
+	doResize();
+};
+
+doResize();
+Util.$$("<?= $campo; ?>").focus();
+
+</script>
+</body>
+</html>

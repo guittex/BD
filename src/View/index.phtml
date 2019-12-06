@@ -1,0 +1,101 @@
+<html>
+<head>
+<title><?= APP_TITLE; ?></title>
+<style type="text/css">
+<?php Html::doLoadCSS('styles'); ?>
+</style>
+<script type="text/javascript">
+
+var IMAGE_PATH      = "<?= IMAGE_PATH; ?>";
+var SERVLET_PREFFIX = "<?= Request::getServletPath(); ?>";
+var SERVLET_PATH    = "<?= Request::getServletPath(''); ?>";
+var SERVLET_ACTION  = "<?= Request::getServletAction(''); ?>";
+
+</script>
+<?php Html::doLoadJS('v2.0a/Ajax', 'v2.0a/Core', 'v2.0a/JProgressBar', 'v2.0a/JString', 'v2.0a/PHP', 'v2.0a/Popup', 'v2.0a/Util'); ?>
+</head>
+<body>
+<img style="position:absolute; width:100%; height:100%;" src="<?= Html::getImagePath('linux/linux.fedora8.bg.png'); ?>" />
+<div style="position:absolute; width:100%; height:100%;" id="div_pagina">
+<table width="100%" height="100%" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="57">
+      <table width="100%" cellpadding="0" cellspacing="0">
+		<tr>
+		  <td width="65"><?= Html::getImage('mac/mac.panel.top.left.png'); ?></td>
+		  <td style="background:url(<?= Html::getImagePath('mac/mac.panel.top.middle.png'); ?>);">
+		    <table width="99%" align="center" cellpadding="0" cellspacing="0">
+		      <tr>
+		        <td height="24" align="center">&nbsp;</td>
+		      </tr>
+		      <tr>
+		        <td height="33" align="center"><?= getInfo(); ?></td>
+		      </tr>
+		    </table>
+		  </td>
+		  <td width="30"><?= Html::getImage('mac/mac.panel.top.right.png', array('style' => 'cursor:pointer;', 'onclick' => sprintf("location = '%s';", Request::getServletPath('logoff')))); ?></td>
+		</tr>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td height="100%" style="background:rgb(232, 232, 232);" valign="top">
+	<?php
+
+		echo '<table cellpadding="0" cellspacing="0"><tr>';
+
+		if (APP_CURR_NAVIGATOR == 'left') {
+			echo '<td>';
+			Request::display('navigator');
+			echo '</td>';
+			echo '<td class="esquerda">';
+			Request::display('workspaces');
+			echo '</td>';
+		}
+		else {
+			echo '<td>';
+			Request::display('workspaces');
+			echo '</td>';
+			echo '<td class="esquerda">';
+			Request::display('navigator');
+			echo '</td>';
+		}
+
+		echo '</tr></table>';
+
+	?>
+    </td>
+  </tr>
+  <tr>
+    <td height="20">
+	  <table width="100%" cellpadding="0" cellspacing="0">
+		<tr>
+		  <td width="25"><?= Html::getImage('mac/mac.panel.bottom.left.png'); ?></td>
+		  <td style="background:url(<?= Html::getImagePath('mac/mac.panel.bottom.middle.png'); ?>);">
+		    <div align="center">
+		      <?php printf('Copyright &copy; 2012 (P) %s - %s. All rights reserved.', date('Y'), APP_TITLE); ?>
+		    </div>
+		  </td>
+		  <td width="16"><?= Html::getImage('mac/mac.panel.bottom.right.png'); ?></td>
+		</tr>
+      </table>
+    </td>
+  </tr>
+</table>
+</div>
+<?php Request::display('popup'); ?>
+<script type="text/javascript">
+
+window.onresize = function () {
+	doResize();
+};
+
+doResize();
+Util.$$("div_pagina").show();
+
+</script>
+<noscript>
+<div style="position:absolute;" class="white_title">Javascript desabilitado. Favor, habilite-o no seu navegador e tente novamente!</div>
+</noscript>
+</body>
+</html>

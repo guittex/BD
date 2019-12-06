@@ -1,0 +1,184 @@
+
+/* cores bonitas
+
+.button {
+	width: 300px;
+	height: 60px;
+	background: #04BD68;
+	border: 2px solid #048D38;
+	border-radius: 8px;
+	color: white;
+	font-size: 36px;
+}
+
+.button:hover {
+	background: #0482BD;
+	border: 2px solid #04528D;
+	transition: all 1s;
+}
+*/
+@font-face {
+  font-family: 'Verdana';
+  font-style: normal;
+  font-weight: 300;
+  src: url(${FONT_PATH}/verdana.ttf);
+/*  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F; */
+}
+* {
+	font-family: Verdana, Cantarel;
+	font-size: 12px;
+	color: rgb(11, 51, 60);
+	cursor: default;
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0px;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+#div_pagina {
+	padding: 6px;
+}
+
+#div_navigator {
+	width: 100%;
+	overflow: auto;
+/*	overflow-x: hidden;
+	overflow-y: auto;*/
+	background: #FFFFFF;
+}
+
+#div_workspace {
+	width: 100%;
+	overflow: hidden;
+}
+
+.fore {
+	background: 1px solid rgb(232, 232, 232);
+}
+
+.todas, .all {
+	border: 1px solid rgb(150, 150, 150);
+}
+
+.cima, .topo {
+	border-top: 1px solid rgb(150, 150, 150);
+}
+
+.baixo, .bottom {
+	border-bottom: 1px solid rgb(150, 150, 150);
+}
+
+.esquerda, .left {
+	border-left: 1px solid rgb(150, 150, 150);
+}
+
+.direita, .right {
+	border-right: 1px solid rgb(150, 150, 150);
+}
+
+.title {
+	background: #2b404e;
+	color: white;
+}
+
+.content_assist {
+	overflow: auto;
+	position: absolute;
+	padding-left: 4px;
+	width: 300px;
+	height: 200px;
+	border: 1px solid #808080;
+	background: #ffff8f;
+}
+
+td.JIco, div.JIco {
+	width: 24px;
+	height: 25px;
+}
+
+div.JIco:hover {
+	border: 1px solid rgb(150, 150, 150);
+}
+
+.JLabel {
+	height: 5px;
+	font-weight: bold;
+}
+
+.JComboBox,.JTextField,.JTextArea,.JComboBoxDisabled,.JTextFieldDisabled,.JTextAreaDisabled {
+	padding: 4px;
+	border-top: 1px solid #6D6F70;
+	border-left: 1px solid #C9CBCC;
+	border-right: 1px solid #C9CBCC;
+	border-bottom: 1px solid #D3D5D6;
+	background: #FFFFFF;
+}
+
+.JTextFieldDisabled,.JTextAreaDisabled,.JComboBoxDisabled {
+	color: #666666;
+	font-style: italic;
+	background: #F0F0F0;
+}
+
+.JTextField:focus,.JTextArea:focus {
+	outline: none;
+	box-shadow: 0 0 0 1px #7FB8EB, 0 0 0 2px #50A3F6;
+}
+
+.JItemTree, .JItemTreeHover, .JItemTree:hover {
+	height: 20px;
+}
+
+.JItemTreeHover, .JItemTree:hover {
+	transition: all 0.3s ease;
+	background: #50A3F6;
+	color: #FFFFFF;
+}
+
+table.grid {
+	width: 100%;
+	border-collapse: collapse;
+	border-left: 1px solid #CCCCCC;
+	border-bottom: 1px solid #CCCCCC;
+}
+
+table.grid th {
+	padding-left: 4px;
+	text-align: left;
+	border-top: 1px solid #CCCCCC;
+	border-right: 1px solid #C0C0C0;
+	border-bottom: 1px solid #C0C0C0;
+	height: 17px;
+	background: url(${IMAGE_PATH}/windows/grid_bg.png);
+/*	background-image: linear-gradient(to bottom, rgb(254, 254, 254), rgb(234, 234, 234)); */
+}
+
+table.grid th:hover {
+	border-right: 1px solid #72A1D5;
+	background: url(${IMAGE_PATH}/windows/grid_bg_over.png);
+/*	background: #B2E1FF; */
+}
+
+table.grid td {
+	border-right: 1px solid #C0C0C0;
+	padding-left: 4px;
+	text-align: left;
+	height: 22px;
+}
+
+table.grid tr:nth-child(even) {
+    background: #EEF3FF;
+}
+
+table.grid tr:nth-child(odd) {
+    background: #FFFFFF;
+}
+
+table.grid tr:hover {
+	background: #B2E1FF;
+}
